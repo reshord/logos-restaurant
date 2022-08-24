@@ -1,0 +1,44 @@
+.filter {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.filterActive {
+    color: white;
+    opacity: 1;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter:hover {
+    color: white;
+    opacity: 1;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-around;
+    height: 78px;
+    align-items: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 40px;
+    position: sticky;
+    top: 100px;
+    z-index: 4;
+    background: #403C3B;
+}
+
+@media (max-width: 375px) {
+    .headerContent {
+        width: 90%;
+        overflow-x: hidden;
+    }
+    .headerContent span {
+        font-size: 14px;
+    }
+
+}
