@@ -7,8 +7,10 @@ const fs = require('fs')
 const {register} = require('./src/Controllers/register')
 const {login} = require('./src/Controllers/login')
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.0eazcat.mongodb.net/?retryWrites=true&w=majority').then(() => {
-    app.listen(port, () => {
+mongoose.connect(
+    process.env.MONGODB_URI
+).then(() => {
+    app.listen(process.env.PORT || 4444, () => {
         return console.log(`server has been started on ${port}`);
     })
 })
