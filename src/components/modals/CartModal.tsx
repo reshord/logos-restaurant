@@ -5,14 +5,17 @@ import style from '../../styles/header/cartModal.module.css'
 import closeModal from '../../images/header-image/closeModal.png'
 import cartEmpty from '../../images/header-image/cartEmpty.png'
 import { cartModal } from "../../redux/slices/products";
+import { useNavigate } from "react-router-dom";
 
 const CartModal = () => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const closeCartModal = () => {
         dispatch(cartModal(false))
-        
+        navigate('/')
     }
+
 
     return (
         <div className={style.cartModalBody}>
@@ -21,7 +24,7 @@ const CartModal = () => {
                     <div className={style.cartEmpty}>
                         <img className={style.cartImg} src={cartEmpty} alt="" />
                         <span>КОРЗИНА ПУСТАЯ</span>
-                        <button className={style.cartBtn}>Посмотреть меню</button>
+                        <button onClick={() => closeCartModal()} className={style.cartBtn}>Посмотреть меню</button>
                     </div>
             </div>  
         </div>

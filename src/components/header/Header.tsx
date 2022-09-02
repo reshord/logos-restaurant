@@ -16,11 +16,15 @@ const Header = () => {
     const dispatch = useAppDispatch()
     const {addProdToCart, auth} = useAppSelector<RootState>(store.getState)
 
-    const {products, isLoading, cartOpen} = addProdToCart
-    const {isAuth} = auth
+    const {productsCart, isLoading, cartOpen} = addProdToCart
+    const {isAuth, data} = auth
 
     const cartEmpty = () => {
         dispatch(cartModal(true))
+    }
+
+    const openAuthModal = () => {
+
     }
 
     return (
@@ -47,17 +51,19 @@ const Header = () => {
                     <b>+7 (917) 510-57-59</b>
                 </div>
             </div>
-            {products.length > 0 
+            {productsCart.length > 0 
             ? (
                 <>
                 <div className={styles.auth}>
                     <img className={styles.authImg} src={Profile} alt="" />
-                    <span>{isAuth ? 'Войти' : 'Регистрация'}</span>
+                    {data 
+                        ? <Link to={'exit'}><span>Выйти</span></Link> 
+                        : <Link to={'/auth'}><span onClick={() => openAuthModal()}>{isAuth ? 'Войти' : 'Регистрация'}</span></Link>}
                 </div>
                 <Link to={'/cart'}>
                 <div className={styles.cart}>
                     <b>Корзина</b>
-                    <span className={styles.cartCounter}>{products.length}</span>
+                    <span className={styles.cartCounter}>{productsCart.length}</span>
                 </div>
             </Link>
             </>
@@ -65,10 +71,9 @@ const Header = () => {
             : (
                 <div onClick={() => cartEmpty()} className={styles.cart}>
                     <b>Корзина</b>
-                    <span className={styles.cartCounter}>{products.length}</span>
+                    <span className={styles.cartCounter}>{productsCart.length}</span>
                 </div>
             )}
-            
         </div>
     )
 }

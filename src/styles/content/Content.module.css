@@ -1,5 +1,9 @@
 /* Content */
 
+.content {
+    width: 100%;
+}
+
 .contentTitle span {
     color: white;
     font-size: 32px;
@@ -34,7 +38,6 @@
     margin-left: 40px;
     width: 90%;
     box-sizing: border-box;
-
 }
 
 /* Card */ 
@@ -170,7 +173,7 @@
 }
 
 .contacts {
-    background: #2E2B2C;
+    background: #2E2B2C no-repeat;
     color: white;
     width: 526px;
     height: 405px;
@@ -350,13 +353,87 @@
    border-radius: 10px;
    text-align: center;
    box-sizing: border-box;
-   padding-top: px;
    box-shadow: 0px 5px 10px rgba(114, 163, 121, 0.7);
 }
+
+.authModal {
+    background: #403C3B;
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+.authModalContent {
+    color: white;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.authHeader span{
+    width: 130px;
+    height: 50px;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 10px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 15px 10px 0px 10px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.auth:hover {
+    opacity: 0.5;
+}
+
+.authHeader {
+    display: flex;
+    justify-content: center;
+    width: 230px;
+    margin: 0 auto;
+}
+
+.authModalContent input {
+    width: 400px;
+    margin: 10px 0px 20px 45px;
+    height: 45px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: none;
+    background: rgba(80, 75, 74, 1);
+    color: white;
+}
+
+
+.authBtn {
+    border: none;
+    color: white;
+    background: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
+    font-size: 14px;
+    width: 137px;
+    height: 44px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.authActive {
+    background: linear-gradient(90deg, #494544 100%, #504B4A 100%);
+}
+
+
 
 
 @media (max-width: 375px) {
     .content {
-        width: 1200px;
+        width: 600px;
+    }
+    .contentCards {
+        width: 600px;
     }
 }

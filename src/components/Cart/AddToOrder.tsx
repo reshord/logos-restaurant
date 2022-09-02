@@ -14,6 +14,7 @@ const AddToOrder: React.FC<CardInfo> = ({image, title, price, id, count, weight,
     
     return (
         <div className={styles.addProdToOrder}>
+            
             <img className={styles.orderImg} src={image} alt="" />
             <span>{title}</span>
             <div onClick={() => addProdToOrder({image, title, price, id, count, weight, description})} className={styles.add}>

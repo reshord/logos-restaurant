@@ -1,35 +1,46 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from '../../styles/cart/cart.module.css'
 import Header from '../header/Header';
 import Footer from '../Footer/Footer';
 import HeaderContent from "../content/HeaderContent";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import store, { RootState } from "../../redux/store";
 import CartProd from "./CartProd";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 import Arrow from '../../images/header-image/Arrow.png'
 import AddToOrder from "./AddToOrder";
-
+import axios from "axios";
+import { cartProdAdvice } from "../../redux/slices/products";
+import { CardInfo } from "../../types/types";
+import { motion } from "framer-motion";
 
 const Cart: React.FC = () => {
-
-    const {addProdToCart} = useAppSelector<RootState>(store.getState)
-    const {products, isLoading} = addProdToCart
+    const dispatch = useAppDispatch()
+    const {addProdToCart, auth} = useAppSelector<RootState>(store.getState)
+    const {productsCart, isLoading, prodAdvice} = addProdToCart
+    const {isAuth} = auth
     const navigate = useNavigate()
 
-    const summProd = products.reduce((acc, cur) => {
+    const summProd = productsCart.reduce((acc, cur) => {
         return acc + cur.price * cur.count
     }, 0)
 
+    const redirectToAuth = () => {
+        if(!isAuth) {
+            alert('Для оформления заказа необходимо авторизоваться')
+            navigate('/auth')
+        }
+    }
 
     useEffect(() => {
-        if(products.length < 1) {
-            
+        if(productsCart.length < 1) {
              navigate('/')
         }
-
-    }, [products]);
+        axios.get<CardInfo[]>('http://localhost:4444/cart ').then(({data}) => {
+            dispatch(cartProdAdvice(data))
+        })
+    }, [productsCart]);
 
 
     return (
@@ -43,21 +54,26 @@ const Cart: React.FC = () => {
                     </div>
                     <div className={styles.cartTitle}>
                         <p>КОРЗИНА</p> 
-                        <span>{products.length > 0 
-                        ? `(в корзине ${products.length} товар(-а))`
+                        <span>{productsCart.length > 0 
+                        ? `(в корзине ${productsCart.length} товар(-а))`
                         : '(корзина пуста)' }</span>
                     </div>
                     <div className="cart-products">
-                        {products.map(el => <CartProd key={el.id} {...el}/>)}
+                        {productsCart.map(el => <CartProd key={el.id} {...el}/>)}
                     </div>
-                    <div className="cart-footer">
+                    <motion.div className={styles.cartFooter}>
                         <div className={styles.cartFooterTitle}>
                             ДОБАВИТЬ К ЗАКАЗУ
                         </div>
-                        <div className={styles.AddToOrder}>
-                            {products.map(el => <AddToOrder key={el.id} {...el}/>)}
-                        </div>
-                    </div>
+                        <motion.div drag='x' 
+                                    dragConstraints={{right: 0, left: -1200}} 
+                                    className={styles.AddToOrder}>
+                            {prodAdvice.map(el => <AddToOrder key={el.id} {...el}/>)}
+                            {prodAdvice.length === 0 && (
+                                <div>Нет товаров</div>
+                            )}
+                        </motion.div>
+                    </motion.div>
                 </div>
 
                 <div className={styles.cartProdSumm}>
@@ -69,7 +85,7 @@ const Cart: React.FC = () => {
                         <p>Минимальная сумма заказа 500 ₽</p>
                     </div>
                     <div className={styles.order}>
-                        <button className={styles.orderBtn}>Оформить заказ</button>
+                        <button onClick={() => redirectToAuth()} className={styles.orderBtn}>Оформить заказ</button>
                     </div>
                 </div>
             <Footer />

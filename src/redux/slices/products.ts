@@ -3,12 +3,13 @@ import { CardInfo } from "../../types/types";
 import {orderProd} from '../../types/types'
 
 type initialStateType = {
-    products: CardInfo[]
+    productsCart: CardInfo[]
     isLoading: boolean
     cartOpen: boolean
     prodInCart: boolean
     prodId: null
     message: null | string
+    prodAdvice: CardInfo[]
 }
 type prodChange = {
     payload: {
@@ -18,12 +19,13 @@ type prodChange = {
 }
 
 const initialState: initialStateType = {
-    products: [],
+    productsCart: [],
     isLoading: true,
     cartOpen: false,
     prodInCart: false,
     prodId: null,
-    message: null
+    message: null,
+    prodAdvice: []
 }
 
 const addProdToCart = createSlice({
@@ -32,18 +34,17 @@ const addProdToCart = createSlice({
     reducers: {
         /* Add prod */
         pushArr: (state, action: PayloadAction<CardInfo | orderProd>) => {
-                const prodInCart = state.products.find(el => el.id === action.payload.id)
+                const prodInCart = state.productsCart.find(el => el.id === action.payload.id)
                 if(!prodInCart) {
-                    state.products.push(action.payload)
+                    state.productsCart.push(action.payload)
                 }   
                 else {
                     prodInCart.count = prodInCart.count + 1
                 }
-
         },
         /* Delete prod */
         deleteProdCart: (state, action: PayloadAction<number>) => {
-            state.products = state.products.filter(el => action.payload !== el.id)
+            state.productsCart = state.productsCart.filter(el => action.payload !== el.id)
             state.prodInCart = false
         },
         /* Delete prod */
@@ -52,30 +53,30 @@ const addProdToCart = createSlice({
         },
         /* Check Prod */
         productInCart: (state, action) => {
-            if(state.products.filter(el => el.id === action.payload)) {
+            if(state.productsCart.filter(el => el.id === action.payload)) {
                 state.prodInCart = true
                 state.prodId = action.payload
             }
         },
-        // addProducts: (state, action: prodChange) => {
-        //     if(state.products.length > 0) {
-        //         state.products.map(el => {
-        //             if(action.payload.id === el.id) {
-        //                 el.price = action.payload.totalPrice
-        //             }
-        //         })  
-        //     }
-        // },
+        /* Update Prod */
         updatePriceProd: (state, action) => {
-            state.products.map(el => {
+            state.productsCart.map(el => {
                 if(action.payload.id === el.id) {
                     el.count = action.payload.totalCount
                 }
             })
+        },
+        cartProdAdvice: (state, action: PayloadAction<CardInfo[]>) => {
+            state.prodAdvice = action.payload
         }
     }
 })
 
-export const {pushArr, deleteProdCart, cartModal, productInCart, updatePriceProd} = addProdToCart.actions
+export const { pushArr, 
+              deleteProdCart, 
+              cartModal, 
+              productInCart, 
+              updatePriceProd, 
+              cartProdAdvice } = addProdToCart.actions
 
 export default addProdToCart.reducer

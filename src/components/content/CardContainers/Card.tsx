@@ -12,25 +12,27 @@ import { Link } from "react-router-dom";
 const Card: React.FC<CardInfo> = ({id, image, title, count, description, weight, price}) => {
     const dispatch = useAppDispatch()
     const {addProdToCart} = useAppSelector<RootState>(store.getState)
-    const {products, isLoading, cartOpen, prodInCart, prodId } = addProdToCart
+    const {productsCart, isLoading, cartOpen, prodInCart, prodId } = addProdToCart
     const [totalPrice, setTotalPrice] = useState<number>(price)
     const [totalCount, setTotalCount] = useState<number>(count + 1)
     
     useEffect(() => {
-        products.map(el => {
+        
+        productsCart.map(el => {
             if(id === el.id) {
                 setTotalPrice(price * el.count)
-                setTotalCount(el.count)
+                setTotalCount(el.count + 1)
             }
         })
+
     }, [count]);
 
 
-    if(!image) {
-        return <div>Загрузка...</div>
-    }
 
     const pricePlus = () => {
+        if(totalCount <= totalCount) {
+            setTotalPrice(totalPrice * totalCount)
+        }
         setTotalCount(totalCount + 1)
         setTotalPrice(price * totalCount)
         dispatch(updatePriceProd({id, totalCount}))
@@ -77,7 +79,7 @@ const Card: React.FC<CardInfo> = ({id, image, title, count, description, weight,
                 ? (
                    <div className={styles.productInCart}>
                         <span onClick={() => priceMinus()}>-</span>
-                        <div>{totalPrice} ₽</div>
+                        <div>{totalPrice <= 0 ? price : totalPrice} ₽</div>
                         <span onClick={() => pricePlus()}>+</span>
                    </div>
                 )

@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import ProdInfo from './components/ProdInfo/ProdInfo';
+import AuthModal from './components/modals/AuthModal';
 
 const rootStyle = document.querySelector('body') as HTMLElement
 rootStyle.style.margin = '0px'
@@ -26,6 +27,7 @@ root.render(
           <Route path='/' element={<App />}></Route>
           <Route path='/cart' element={<Cart />}></Route>
           <Route path='/infoProduct/:id' element={<ProdInfo />}/>
+          <Route path='/auth' element={<AuthModal />}/>
         </Routes>
       </Provider>
     </BrowserRouter>

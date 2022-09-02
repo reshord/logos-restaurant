@@ -50,7 +50,8 @@ const CartProd:React.FC<CartProdTypes> = ({image, title, description, count, pri
 
     useEffect(() => {
         setTotalPrice(price * count)
-    }, []);
+        setCountProd(count)
+    }, [count]);
     
     return (
         <div className={styles.cartProd}>

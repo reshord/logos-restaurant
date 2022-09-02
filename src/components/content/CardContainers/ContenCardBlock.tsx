@@ -2,29 +2,29 @@ import React, { useRef, useState, useEffect } from "react";
 import styles from '../../../styles/content/Content.module.css'
 import Card from '../CardContainers/Card'
 import {motion} from 'framer-motion'
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import store, { RootState } from "../../../redux/store";
 import { Link } from "react-router-dom";
 import CardLoader from '../../content/CardContainers/CardLoader'
+import axios from 'axios'
+import { CardInfo } from "../../../types/types";
+
 
 type ColdCardType = {
     title: string
 }
 
-const ContenCardBlock: React.FC<ColdCardType> = ({title}) => {
-
+const ContenCardBlock: React.FC<ColdCardType> = React.memo(({title}) => {
+    const dispatch = useAppDispatch()
     const [width, setWidth] = useState<undefined | number>()
     const {addProdToCart, allProducts} = useAppSelector<RootState>(store.getState)
-    const {products, isLoading} = addProdToCart 
-    console.log(isLoading);
-    
-    
-    
+    const {productsCart, isLoading} = addProdToCart 
 
+    
+    
     const carousel = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        setWidth(carousel.current?.offsetWidth)
     }, []);
     
     return (
@@ -33,15 +33,13 @@ const ContenCardBlock: React.FC<ColdCardType> = ({title}) => {
                 <span>{title}</span>
             </div>
             <motion.div ref={carousel} 
-                        drag="x" 
-                        dragConstraints={{right: 0, left: -1299}} 
-                        className={styles.contentCards}>
-                {isLoading 
-                ? allProducts.products.map(el => <Card key={el.id} {...el} />) 
-                : Array(10).fill(<Card id={0} image={""} title={""} count={0} description={""} weight={""} price={0} />).map(el => <CardLoader />)}
+                        className={styles.contentCards}
+                        drag='x'
+                        dragConstraints={{right: 0, left: -1367}}>
+                {isLoading && allProducts.products.map(el => <Card key={el.id} {...el} />)}
             </motion.div>
         </motion.div>
     )
-}
+})
 
 export default ContenCardBlock

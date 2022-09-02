@@ -4,15 +4,20 @@ import styles from '../../styles/content/Content.module.css'
 import ContenCardBlock from "./CardContainers/ContenCardBlock";
 import store, { RootState } from "../../redux/store";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import CartModal from "../header/CartModal";
-
+import CartModal from "../modals/CartModal";
+import { addProducts } from '../../axios';
+import AuthModal from '../modals/AuthModal'
 const Content = () => {
 
-    const {addProdToCart} = useAppSelector<RootState>(store.getState)
+    const {addProdToCart, auth} = useAppSelector<RootState>(store.getState)
     const dispatch = useAppDispatch()
+    
+    const {productsCart, isLoading, cartOpen} = addProdToCart
+    const {isAuth} = auth
 
-    const {products, isLoading, cartOpen} = addProdToCart
-
+    useEffect(() => {
+        dispatch(addProducts())
+    }, []);
 
     return (
         <div className={styles.content}>

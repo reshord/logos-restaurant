@@ -136,12 +136,28 @@ a {
 
 .AddToOrder {
     background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
-    width: 1096px;
-    height: 234px;
+    width: 2479px;
+    height: 254px;
     margin: 0 auto;
     border-radius: 10px;
     margin-top: 40px;
     display: flex;
+}
+
+.AddToOrder div {
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cartFooter {
+    overflow-x: hidden;
+    width: 80%;
+    margin: 0 auto;
+    
 }
 
 .orderImg {
@@ -155,7 +171,7 @@ a {
     font-size: 25px;
     font-weight: 700;
     width: 1096px;
-    margin: 0 auto;
+    margin: 30px 0px 10px 0px;
 }
 
 .addProdToOrder {
@@ -165,12 +181,14 @@ a {
     align-items: center;
     margin: 0px 5px 0px 27px;
     padding-top: 10px;
+    
 }
 
 .addProdToOrder:not(:first-child) {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     padding-left: 35px;
 }
+
 
 
 
@@ -238,4 +256,92 @@ a {
 
 .summ p {
     font-size: 14px;
+}
+
+@media (max-width: 1266px) {
+    .cart {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .cartProd {
+        width: 900px;
+    }
+    .AddToOrder {
+        width: 898px;
+    }
+    .cartFooterTitle{
+        margin: 0 auto;
+    }
+    .cartProdSumm {
+        margin-top: 35px;
+        width: 550px;
+    }
+    .orderImg {
+        width: 139px;
+        height: 103px;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 985px) {
+    .cart {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .cartProd {
+        width: 800px;
+    }
+
+    .blockTwo {
+        width: 350px;
+    }
+    .AddToOrder {
+        width: 798px;
+    }
+
+    .cartProdSumm {
+        margin-top: 35px;
+        width: 550px;
+    }
+    .orderImg {
+        width: 159px;
+        height: 103px;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 878px) {
+    .cart {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .cartProd {
+        width: 600px;
+    }
+    .cartFooterTitle {
+        margin-left: 90px;
+    }
+    .blockTwo {
+        width: 260px;
+    }
+    .prodInfo span {
+        display: flex;
+        flex-wrap: wrap;
+        width: 130px;
+    }
+    .AddToOrder {
+        width: 606px;
+        height: 200px;
+    }
+
+    .cartProdSumm {
+        margin-top: 35px;
+        width: 450px;
+    }
+    .orderImg {
+        width: 86px;
+        height: 73px;
+        margin-top: 10px;
+    }
+    .orderBtn {
+        width: 159px;
+    }
 }

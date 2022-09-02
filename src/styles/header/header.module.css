@@ -45,6 +45,8 @@
     font-style: normal;
     font-weight: 400;
     border: none;
+    color: white;
+
 }
 
 .search {
@@ -71,6 +73,7 @@
 .contactsNumber b {
     color: rgba(255, 255, 255, 1);
     font-size: 18px;
+    cursor: pointer;
 }
 
 .contactsImage {
@@ -173,16 +176,114 @@
 
 /* Media */
 
+@media (max-width: 1273px) {
+    .deliveryAddress {
+        width: 400px;
+    }
+}
+@media (max-width: 1190px) {
+    .auth {
+        display: none;
+    }
+}
+@media (max-width: 969px) {
+    .deliveryAddress {
+        width: 300px;
+    }
+
+}
+@media (max-width: 869px) {
+    .deliveryAddress {
+        width: 240px;
+    }
+    .cart {
+    }
+    .logoName {
+        font-size: 22px;
+    }
+}
+@media (max-width: 840px) {
+    .deliveryAddress {
+        width: 240px;
+    }
+    .contactsNumber {
+        margin-right: 15px;
+    }
+    .contactsNumber b {
+        font-size: 15px;
+    }
+    .logoName {
+        font-size: 22px;
+    }
+}
+@media (max-width: 805px) {
+    .deliveryAddress {
+        width: 200px;
+        font-size: 15px;
+    }
+    .search {
+        display: none;
+    }
+}
+@media (max-width: 745px) {
+    .contacts {
+        display: none;
+    }
+    .header {
+        justify-content: space-between;
+    }
+    .logoName {
+        margin-left: 20px;
+    }
+}
+@media (max-width: 576px) {
+    .header {
+        display: flex;
+        height: 112px;
+        width: 618px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .deliveryAddress {
+        width: 165px;
+        height: 52px;
+        margin: 15px 30px 15px 0px;
+    }
+    .contacts {
+        display: none;
+    }
+
+}
+
+
 @media (max-width: 375px) {
     .header {
-        width: 170%;
         display: flex;
         flex-wrap: wrap;
         height: 142px;
+        width: 375px;
     }
+    .cartMedia {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cartMedia span {
+        margin-top: 5px;
+    }
+    
+    .menu {
+        display: block;
+    }
+
     .deliveryAddress {
-        width: 455px;
+        width: 235px;
         height: 52px;
+        margin-right: 10px;
+        margin: 10px 0px 15px 0px;
     }
     .contacts {
         display: none;
