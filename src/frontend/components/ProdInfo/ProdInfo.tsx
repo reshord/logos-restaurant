@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { CardInfo } from "../../types/types";
-import styles from '../../styles/ProdInfo/prodInfo.module.css'
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import store, { RootState } from "../../redux/store";
 import { useParams } from "react-router-dom";
@@ -32,7 +31,7 @@ const ProdInfo: React.FC = () => {
         <>
         <Header />
         <HeaderContent />
-        <div className={styles.prodInfo}>
+        {/* <div className={styles.prodInfo}>
             <div className="prodInfoImage">
                 <img className={styles.prodImg} src={product?.image} alt="" />
             </div>
@@ -55,7 +54,7 @@ const ProdInfo: React.FC = () => {
                         </div>
                     </div>
             </div>
-        </div>
+        </div> */}
         <Footer />
        </>
     )

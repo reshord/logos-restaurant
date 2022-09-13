@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import styles from '../../../styles/content/Content.module.css'
-import Card from '../CardContainers/Card'
+import Card from './Card'
 import {motion} from 'framer-motion'
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import store, { RootState } from "../../../redux/store";
 import { Link } from "react-router-dom";
-import CardLoader from '../../content/CardContainers/CardLoader'
+import CardLoader from './CardLoader'
 import axios from 'axios'
 import { CardInfo } from "../../../types/types";
 

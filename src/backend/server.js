@@ -7,7 +7,7 @@ const fs = require('fs')
 const {register} = require('./Controllers/register')
 const {login} = require('./Controllers/login')
 const {logout} = require('./Controllers/logout')
-require('npm install dotenv')
+require('dotenv').config()
 
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb+srv://admin:admin@cluster0.0eazcat.mongodb.net/?retryWrites=true&w=majority'
