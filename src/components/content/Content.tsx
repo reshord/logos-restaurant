@@ -20,7 +20,7 @@ const Content = () => {
     }, []);
 
     return (
-        <div className={styles.content}>
+        <div className={styles.content} >
             {cartOpen && (
                 <CartModal />
             )}

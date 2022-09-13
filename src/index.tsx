@@ -7,6 +7,7 @@ import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
+import DeliveryPage from './components/Delivery/DeliveryPage';
 import ProdInfo from './components/ProdInfo/ProdInfo';
 import AuthModal from './components/modals/AuthModal';
 
@@ -28,6 +29,7 @@ root.render(
           <Route path='/cart' element={<Cart />}></Route>
           <Route path='/infoProduct/:id' element={<ProdInfo />}/>
           <Route path='/auth' element={<AuthModal />}/>
+          <Route path='/delivery' element={<DeliveryPage />}></Route>
         </Routes>
       </Provider>
     </BrowserRouter>

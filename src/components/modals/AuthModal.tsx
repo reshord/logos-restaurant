@@ -26,20 +26,22 @@ const AuthModal: React.FC = () => {
     const [authSide, setAuthSide] = useState<number>(0)
     
 
-    const onsubmitLogin: SubmitHandler<FieldValues> = ({email, password}) => {
-        dispatch(authLogin({email, password}))
-        reset()
-    }
-
-    const onsubmitRegister: SubmitHandler<FieldValues> = async ({email, password, confirmPassword}) => {
-        const {payload}: any = await dispatch(authRegister({email, password, confirmPassword}))
-        
+    const onsubmitLogin: SubmitHandler<FieldValues> = async ({email, password}) => {
+        const {payload}: any = await dispatch(authLogin({email, password}))        
         if(payload.token) {
             localStorage.setItem('token', payload.token)
+            navigate('/')
+            reset()
         }
         else {
             alert('Не удалось авторизоваться')
+            reset()
         }
+        
+    }
+
+    const onsubmitRegister: SubmitHandler<FieldValues> = async ({email, password, confirmPassword}) => {
+        await dispatch(authRegister({email, password, confirmPassword}))
         reset()
     }
 

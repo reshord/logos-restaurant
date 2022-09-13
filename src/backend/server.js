@@ -1,16 +1,18 @@
 const express = require('express')
 const cors = require('cors')
-const db = require('./src/products.json')
-const dbProdAdvice = require('./src/productsAdvice.json')
+const db = require('../products.json')
+const dbProdAdvice = require('../productsAdvice.json')
 const mongoose = require('mongoose')
 const fs = require('fs')
-const {register} = require('./src/Controllers/register')
-const {login} = require('./src/Controllers/login')
+const {register} = require('./Controllers/register')
+const {login} = require('./Controllers/login')
+const {logout} = require('./Controllers/logout')
+require('npm install dotenv')
 
 mongoose.connect(
-    process.env.MONGODB_URI
+    process.env.MONGODB_URI || 'mongodb+srv://admin:admin@cluster0.0eazcat.mongodb.net/?retryWrites=true&w=majority'
 ).then(() => {
-    app.listen(process.env.PORT || 4444, () => {
+    app.listen(process.env.PORT || port, () => {
         return console.log(`server has been started on ${port}`);
     })
 })
@@ -32,6 +34,7 @@ app.get('/cart', (req, res) => {
 
 app.post('/auth/register', register)
 app.post('/auth/login', login)
+app.post('/auth/logout', logout)
 
 
 

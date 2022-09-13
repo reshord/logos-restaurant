@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FieldValues } from "../../types/types";
-import {authLogin, authRegister} from '../../axios'
+import {authLogin, authRegister, logout} from '../../axios'
 
 
 type AuthType = {
@@ -38,15 +38,25 @@ const Auth = createSlice({
 
                 /* Register */
         [authRegister.pending.toString()]: (state) => {
-            state.isAuth = false
             state.status = 'Загрузка'
         },
         [authRegister.fulfilled.toString()]: (state, action: PayloadAction<FieldValues>) => {
-            state.isAuth = true
             state.data = action.payload
             state.status = 'success'
         },
         [authRegister.rejected.toString()]: (state) => {
+            state.status = 'error'
+        },
+        /* Logout */
+        [logout.pending.toString()]: (state) => {
+            state.status = 'Загрузка'
+        },
+        [logout.fulfilled.toString()]: (state) => {
+            state.status = 'success'
+            state.data = null
+            state.isAuth = false
+        },
+        [logout.rejected.toString()]: (state) => {
             state.status = 'error'
         }
     }

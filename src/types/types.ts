@@ -7,6 +7,9 @@ export type CardInfo = {
     weight: string,
     price: number
 }
+export type LogoutType = {
+    email: string,
+}
 
 export type orderProd = {
     id: number,

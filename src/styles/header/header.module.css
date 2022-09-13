@@ -9,7 +9,7 @@
     position: sticky;
     top: 0px;
     background: #403C3B;
-    z-index: 2;
+    z-index: 4;
 }
 
 
@@ -38,15 +38,66 @@
     height: 52px;
     border-radius: 10px;
     padding-left: 45px;
+    padding-top: 0;
+    padding-bottom: 0;
     font-size: 18px;
     background: rgba(80, 75, 74, 1);
-    color: (207, 207, 207, 1);
     font-family: 'Gilroy';
     font-style: normal;
     font-weight: 400;
-    border: none;
+    border: black;
     color: white;
+}
 
+.unknown {
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.street span {
+    color: white;
+}
+
+.streets {
+    position: fixed;
+    top: 73px;
+    left: 360px;
+    background: rgba(80, 75, 74, 1);
+    width: 602px;
+    max-height: 752px;
+    min-height: 52px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    z-index: 3;
+    overflow-y: scroll;
+    height: 200px;
+    
+}
+
+.street {
+    background: rgba(80, 75, 74, 1);
+    height: 52px;
+    color: white;
+    box-sizing: border-box;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+    padding-left: 50px;
+    padding-top: 20px;
+    z-index: 3;
+}
+
+.street:hover {
+    color: white;
+    opacity: 1;
+}
+
+.streets:last-child {
+    padding-bottom: 20px;
 }
 
 .search {
@@ -90,6 +141,7 @@
     width: 17px;
     height: 19px;
 }
+
 
 .cart {
     background: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);

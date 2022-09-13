@@ -26,12 +26,6 @@ const Cart: React.FC = () => {
         return acc + cur.price * cur.count
     }, 0)
 
-    const redirectToAuth = () => {
-        if(!isAuth) {
-            alert('Для оформления заказа необходимо авторизоваться')
-            navigate('/auth')
-        }
-    }
 
     useEffect(() => {
         if(productsCart.length < 1) {
@@ -85,7 +79,12 @@ const Cart: React.FC = () => {
                         <p>Минимальная сумма заказа 500 ₽</p>
                     </div>
                     <div className={styles.order}>
-                        <button onClick={() => redirectToAuth()} className={styles.orderBtn}>Оформить заказ</button>
+                        <Link to={'/delivery'}>
+                            <button disabled={isAuth && summProd > 500 ? false : true} 
+                                     className={styles.orderBtn}>
+                                        Оформить заказ
+                            </button>
+                        </Link>
                     </div>
                 </div>
             <Footer />
